@@ -31,7 +31,7 @@ RUN chown -R nextjs:nodejs /app
 USER nextjs
 
 # Expose port
-EXPOSE 3001
+EXPOSE 13201
 
 # Start development server
 CMD ["pnpm", "--filter", "docs", "dev"]

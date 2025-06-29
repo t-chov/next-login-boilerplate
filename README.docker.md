@@ -18,7 +18,7 @@ This document explains how to set up the development environment using Docker co
 
 3. **Access services:**
    - Web app: http://localhost:13200
-   - Docs app: http://localhost:3001
+   - Docs app: http://localhost:13201
    - Database admin: http://localhost:8080
    - PostgreSQL: localhost:5432
 
@@ -64,7 +64,7 @@ pnpm run db:studio
 
 ### Application Container
 - **Image:** Custom Node.js 18 Alpine
-- **Ports:** 13200 (web), 3001 (docs)
+- **Ports:** 13200 (web), 13201 (docs)
 - **Volumes:** Source code mounted for hot reload
 - **Command:** `pnpm dev` (runs all apps via Turborepo)
 
@@ -144,7 +144,7 @@ services:
   app:
     ports:
       - "3010:13200"  # Change host port
-      - "3011:3001"
+      - "3011:13201"
 ```
 
 ### Database Connection Issues
