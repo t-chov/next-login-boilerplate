@@ -15,9 +15,9 @@ services:
       - /app/apps/docs/node_modules
     environment:
       - NODE_ENV=development
-      - DATABASE_URL=postgresql://postgres:password@postgres:5432/gibbon_writer
+      - DATABASE_URL=postgresql://postgres:password@postgres:25432/gibbon_writer
       - POSTGRES_HOST=postgres
-      - POSTGRES_PORT=5432
+      - POSTGRES_PORT=25432
       - POSTGRES_DB=gibbon_writer
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
@@ -30,7 +30,7 @@ services:
   postgres:
     image: postgres:15-alpine
     ports:
-      - "5432:5432"
+      - "25432:5432"
     environment:
       - POSTGRES_DB=gibbon_writer
       - POSTGRES_USER=postgres

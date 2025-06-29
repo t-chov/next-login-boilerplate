@@ -20,7 +20,7 @@ This document explains how to set up the development environment using Docker co
    - Web app: http://localhost:13200
    - Docs app: http://localhost:13201
    - Database admin: http://localhost:8080
-   - PostgreSQL: localhost:5432
+   - PostgreSQL: localhost:25432
 
 ## Available Commands
 
@@ -70,7 +70,7 @@ pnpm run db:studio
 
 ### PostgreSQL Database
 - **Image:** PostgreSQL 15 Alpine
-- **Port:** 5432
+- **Port:** 25432
 - **Database:** gibbon_writer
 - **User:** postgres
 - **Password:** password
@@ -106,9 +106,9 @@ Copy `.env.example` to `.env` and customize:
 
 ```env
 # Database
-DATABASE_URL=postgresql://postgres:password@postgres:5432/gibbon_writer
+DATABASE_URL=postgresql://postgres:password@postgres:25432/gibbon_writer
 POSTGRES_HOST=postgres
-POSTGRES_PORT=5432
+POSTGRES_PORT=25432
 POSTGRES_DB=gibbon_writer
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=password

@@ -40,7 +40,7 @@
       }
     }
   },
-  "forwardPorts": [13200, 13201, 5432, 8080],
+  "forwardPorts": [13200, 13201, 25432, 8080],
   "postCreateCommand": "pnpm install",
   "postStartCommand": "pnpm db:generate && pnpm db:push",
   "remoteUser": "node"

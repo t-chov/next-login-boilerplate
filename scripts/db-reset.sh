@@ -35,4 +35,4 @@ docker-compose start app
 echo "✅ Database reset complete!"
 echo "📋 You can now access:"
 echo "   - Database admin: http://localhost:8080"
-echo "   - PostgreSQL: localhost:5432"
+echo "   - PostgreSQL: localhost:25432"
