@@ -25,6 +25,8 @@ This is a Turborepo monorepo called "gibbon-writer" built with Next.js apps and 
 - **pnpm**: Package manager with workspace support
 - **ESLint**: Code linting with custom configurations
 - **Prettier**: Code formatting
+- **Tailwind CSS**: Utility-first CSS framework
+- **shadcn/ui**: Pre-built component system based on Radix UI and Tailwind CSS
 
 ## Common Commands
 
@@ -84,6 +86,13 @@ cd packages/ui && pnpm generate:component
 - Use the generator: `turbo gen react-component` from ui package
 - Components are exported via path mapping in package.json
 
+### shadcn/ui Components
+- shadcn/ui components are located in `packages/ui/src/components/`
+- Import shadcn/ui components using `@repo/ui/components/[component-name]`
+- Add new shadcn/ui components manually to `packages/ui/src/components/`
+- All shadcn/ui components use the shared utility function `cn()` from `@repo/ui/lib/utils`
+- Global Tailwind styles are imported via `@repo/ui/globals.css`
+
 ### Port Allocation
 - Web app: 3000
 - Docs app: 3001
@@ -106,6 +115,14 @@ All apps use workspace-local packages:
 - Shared configs for different project types (Next.js, React library)
 
 ### Component Patterns
-- UI components require `appName` prop for context-aware behavior
 - Use "use client" directive for client-side interactivity
 - Follow React 19 patterns and conventions
+
+### shadcn/ui Component Guidelines
+- Use `cn()` utility function for className merging in all shadcn/ui components
+- Follow the established variant pattern with `class-variance-authority`
+- Import Radix UI primitives when needed for accessibility
+- Maintain consistent styling with CSS variables defined in globals.css
+- Export both the component and its variants (e.g., `Button` and `buttonVariants`)
+- Use React.forwardRef for proper ref forwarding
+- Include proper TypeScript interfaces extending HTML element props
