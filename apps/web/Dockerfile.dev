@@ -1,0 +1,37 @@
+FROM node:18-alpine AS base
+
+# Install pnpm globally
+RUN corepack enable pnpm
+
+# Set working directory
+WORKDIR /app
+
+# Copy root package files
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY apps/web/package.json ./apps/web/
+COPY packages/ui/package.json ./packages/ui/
+COPY packages/db/package.json ./packages/db/
+COPY packages/eslint-config/package.json ./packages/eslint-config/
+COPY packages/typescript-config/package.json ./packages/typescript-config/
+
+# Install dependencies
+RUN pnpm install --frozen-lockfile
+
+# Copy source code
+COPY apps/web ./apps/web/
+COPY packages ./packages/
+COPY turbo.json ./
+
+# Create non-root user
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S nextjs -u 1001
+
+# Set ownership
+RUN chown -R nextjs:nodejs /app
+USER nextjs
+
+# Expose port
+EXPOSE 3000
+
+# Start development server
+CMD ["pnpm", "--filter", "web", "dev"]

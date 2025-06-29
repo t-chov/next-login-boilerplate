@@ -1,6 +1,15 @@
 {
   "$schema": "https://turborepo.com/schema.json",
   "ui": "tui",
+  "globalEnv": [
+    "DATABASE_URL",
+    "POSTGRES_HOST",
+    "POSTGRES_PORT",
+    "POSTGRES_DB",
+    "POSTGRES_USER",
+    "POSTGRES_PASSWORD",
+    "NODE_ENV"
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
@@ -14,6 +23,22 @@
       "dependsOn": ["^check-types"]
     },
     "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "db:generate": {
+      "cache": false,
+      "dependsOn": ["^db:generate"]
+    },
+    "db:migrate": {
+      "cache": false,
+      "dependsOn": ["^db:migrate"]
+    },
+    "db:push": {
+      "cache": false,
+      "dependsOn": ["^db:push"]
+    },
+    "db:studio": {
       "cache": false,
       "persistent": true
     }
