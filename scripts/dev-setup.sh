@@ -46,7 +46,7 @@ docker-compose exec app pnpm --filter=@repo/db db:push
 echo "🎉 Development environment is ready!"
 echo ""
 echo "📋 Available services:"
-echo "   - Web app: http://localhost:3000"
+echo "   - Web app: http://localhost:13200"
 echo "   - Docs app: http://localhost:3001"
 echo "   - Database admin: http://localhost:8080"
 echo "   - PostgreSQL: localhost:5432"
