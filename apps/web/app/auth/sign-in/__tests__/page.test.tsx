@@ -11,9 +11,9 @@ vi.mock("@/lib/auth-client", () => ({
 
 // Mock next/navigation
 vi.mock("next/navigation", () => ({
-  useRouter: () => ({
+  useRouter: vi.fn(() => ({
     push: vi.fn(),
-  }),
+  })),
 }));
 
 describe("SignInPage", () => {
@@ -24,7 +24,7 @@ describe("SignInPage", () => {
   it("should render sign in form", () => {
     render(<SignInPage />);
 
-    expect(screen.getByText("サインイン")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "サインイン" })).toBeInTheDocument();
     expect(screen.getByLabelText("メールアドレス")).toBeInTheDocument();
     expect(screen.getByLabelText("パスワード")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "サインイン" })).toBeInTheDocument();
@@ -75,7 +75,9 @@ describe("SignInPage", () => {
 
   it("should redirect to home page on successful sign in", async () => {
     const { signIn } = await vi.importMock("@/lib/auth-client");
-    const mockRouter = vi.mocked((await vi.importMock("next/navigation")).useRouter());
+    const { useRouter } = await vi.importMock("next/navigation");
+    const mockPush = vi.fn();
+    (useRouter as vi.Mock).mockReturnValue({ push: mockPush });
     signIn.email.mockResolvedValue({});
 
     render(<SignInPage />);
@@ -89,7 +91,7 @@ describe("SignInPage", () => {
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(mockRouter.push).toHaveBeenCalledWith("/");
+      expect(mockPush).toHaveBeenCalledWith("/");
     });
   });
 

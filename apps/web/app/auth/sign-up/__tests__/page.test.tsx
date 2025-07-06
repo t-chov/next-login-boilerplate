@@ -1,21 +1,19 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import SignUpPage from "../page";
-
-// Mock auth client
-const mockSignUp = {
-  email: vi.fn(),
-};
-const mockUseRouter = {
-  push: vi.fn(),
-};
+import { signUp } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 vi.mock("@/lib/auth-client", () => ({
-  signUp: mockSignUp,
+  signUp: {
+    email: vi.fn(),
+  },
 }));
 
 vi.mock("next/navigation", () => ({
-  useRouter: () => mockUseRouter,
+  useRouter: vi.fn(() => ({
+    push: vi.fn(),
+  })),
 }));
 
 describe("SignUpPage", () => {
@@ -26,7 +24,7 @@ describe("SignUpPage", () => {
   it("should render sign up form", () => {
     render(<SignUpPage />);
 
-    expect(screen.getByText("サインアップ")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "サインアップ" })).toBeInTheDocument();
     expect(screen.getByLabelText("名前")).toBeInTheDocument();
     expect(screen.getByLabelText("メールアドレス")).toBeInTheDocument();
     expect(screen.getByLabelText("パスワード")).toBeInTheDocument();
@@ -58,7 +56,7 @@ describe("SignUpPage", () => {
   });
 
   it("should call signUp when form is submitted with valid data", async () => {
-    mockSignUp.email.mockResolvedValue({});
+    (signUp.email as vi.Mock).mockResolvedValue({});
 
     render(<SignUpPage />);
 
@@ -73,7 +71,7 @@ describe("SignUpPage", () => {
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(mockSignUp.email).toHaveBeenCalledWith({
+      expect(signUp.email).toHaveBeenCalledWith({
         name: "Test User",
         email: "test@example.com",
         password: "password123",
@@ -82,7 +80,9 @@ describe("SignUpPage", () => {
   });
 
   it("should redirect to home page on successful sign up", async () => {
-    mockSignUp.email.mockResolvedValue({});
+    (signUp.email as vi.Mock).mockResolvedValue({});
+    const mockPush = vi.fn();
+    (useRouter as vi.Mock).mockReturnValue({ push: mockPush });
 
     render(<SignUpPage />);
 
@@ -97,12 +97,12 @@ describe("SignUpPage", () => {
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(mockUseRouter.push).toHaveBeenCalledWith("/");
+      expect(mockPush).toHaveBeenCalledWith("/");
     });
   });
 
   it("should show error message on failed sign up", async () => {
-    mockSignUp.email.mockRejectedValue(new Error("Registration failed"));
+    (signUp.email as vi.Mock).mockRejectedValue(new Error("Registration failed"));
 
     render(<SignUpPage />);
 
@@ -124,7 +124,7 @@ describe("SignUpPage", () => {
   });
 
   it("should show loading state when submitting", async () => {
-    mockSignUp.email.mockImplementation(() => new Promise((resolve) => setTimeout(resolve, 1000)));
+    (signUp.email as vi.Mock).mockImplementation(() => new Promise((resolve) => setTimeout(resolve, 1000)));
 
     render(<SignUpPage />);
 

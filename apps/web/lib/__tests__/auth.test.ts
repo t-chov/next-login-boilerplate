@@ -30,6 +30,9 @@ vi.mock("@repo/db/schema", () => ({}));
 describe("Auth Configuration", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    vi.resetModules();
+    process.env.BETTER_AUTH_URL = "http://localhost:13200";
+    process.env.BETTER_AUTH_SECRET = "default-secret-key";
   });
 
   it("should create auth instance with correct configuration", async () => {

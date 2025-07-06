@@ -19,6 +19,7 @@ vi.mock("better-auth/next-js", () => ({
 describe("Auth API Route", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    vi.resetModules();
   });
 
   it("should call toNextJsHandler with auth.handler", async () => {

@@ -18,7 +18,9 @@
     "docker:down": "docker-compose down",
     "docker:logs": "docker-compose logs -f",
     "docker:setup": "./scripts/dev-setup.sh",
-    "docker:db-reset": "./scripts/db-reset.sh"
+    "docker:db-reset": "./scripts/db-reset.sh",
+    "test": "turbo run test",
+    "test:run": "turbo run test:run"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.0.6",
