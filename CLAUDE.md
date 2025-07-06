@@ -12,7 +12,7 @@ This is a Turborepo monorepo called "gibbon-writer" built with Next.js apps and 
 - **apps/**: Contains Next.js applications
   - `web/`: Main web application (runs on port 13200)
 - **packages/**: Shared packages and configurations
-  - `ui/`: Shared React component library with exports pattern `"./*": "./src/*.tsx"`
+  - `db/`: Database package with Drizzle ORM and PostgreSQL setup
   - `eslint-config/`: Centralized ESLint configurations for base, Next.js, and React
   - `typescript-config/`: Shared TypeScript configurations
 
@@ -26,6 +26,8 @@ This is a Turborepo monorepo called "gibbon-writer" built with Next.js apps and 
 - **Prettier**: Code formatting
 - **Tailwind CSS**: Utility-first CSS framework
 - **shadcn/ui**: Pre-built component system based on Radix UI and Tailwind CSS
+- **Drizzle ORM**: Type-safe database ORM with PostgreSQL
+- **Docker**: Containerized development environment
 
 ## Common Commands
 
@@ -63,6 +65,46 @@ pnpm check-types
 pnpm format
 ```
 
+### Database Management
+```bash
+# Generate database migrations
+pnpm db:generate
+# or: turbo db:generate
+
+# Run database migrations
+pnpm db:migrate
+# or: turbo db:migrate
+
+# Push schema changes to database
+pnpm db:push
+# or: turbo db:push
+
+# Open Drizzle Studio
+pnpm db:studio
+# or: turbo db:studio
+```
+
+### Docker Development
+```bash
+# Start development environment
+pnpm docker:dev
+
+# Start with rebuild
+pnpm docker:build
+
+# Stop containers
+pnpm docker:down
+
+# View logs
+pnpm docker:logs
+
+# Setup development environment
+pnpm docker:setup
+
+# Reset database
+pnpm docker:db-reset
+```
+
 ### Package Management
 ```bash
 # Install dependencies
@@ -85,18 +127,18 @@ cd packages/ui && pnpm generate:component
 - Components are exported via path mapping in package.json
 
 ### shadcn/ui Components
-- shadcn/ui components are located in `packages/ui/src/components/`
-- Import shadcn/ui components using `@repo/ui/components/[component-name]`
-- Add new shadcn/ui components manually to `packages/ui/src/components/`
+- shadcn/ui components are located in `apps/web/components/ui/`
+- Import shadcn/ui components using relative imports from `./components/ui/[component-name]`
+- Add new shadcn/ui components using `npx shadcn add [component-name]` from the web app directory
 - All shadcn/ui components use the shared utility function `cn()` from `@repo/ui/lib/utils`
-- Global Tailwind styles are imported via `@repo/ui/globals.css`
+- Components use Tailwind CSS classes and `class-variance-authority` for variants
 
 ### Port Allocation
-- Web app: 3000
+- Web app: 13200
 
 ### Workspace Dependencies
 All apps use workspace-local packages:
-- `@repo/ui`: Shared component library
+- `@repo/db`: Database package with Drizzle ORM
 - `@repo/eslint-config`: ESLint configurations
 - `@repo/typescript-config`: TypeScript configurations
 
@@ -119,7 +161,14 @@ All apps use workspace-local packages:
 - Use `cn()` utility function for className merging in all shadcn/ui components
 - Follow the established variant pattern with `class-variance-authority`
 - Import Radix UI primitives when needed for accessibility
-- Maintain consistent styling with CSS variables defined in globals.css
+- Maintain consistent styling with Tailwind CSS classes
 - Export both the component and its variants (e.g., `Button` and `buttonVariants`)
 - Use React.forwardRef for proper ref forwarding
 - Include proper TypeScript interfaces extending HTML element props
+
+### Database Guidelines
+- Use Drizzle ORM for type-safe database operations
+- Schema definitions are located in `packages/db/src/schema/`
+- Database connection and configuration in `packages/db/src/index.ts`
+- Use PostgreSQL as the primary database
+- Docker setup includes PostgreSQL container with initialization scripts
