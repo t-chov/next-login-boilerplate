@@ -128,9 +128,10 @@ cd packages/ui && pnpm generate:component
 
 ### shadcn/ui Components
 - shadcn/ui components are located in `apps/web/components/ui/`
-- Import shadcn/ui components using relative imports from `./components/ui/[component-name]`
+- Import shadcn/ui components using path aliases: `@/components/ui/[component-name]`
 - Add new shadcn/ui components using `npx shadcn add [component-name]` from the web app directory
-- All shadcn/ui components use the shared utility function `cn()` from `@repo/ui/lib/utils`
+- Configuration uses "new-york" style with RSC disabled
+- All shadcn/ui components use the utility function `cn()` from `@/lib/utils`
 - Components use Tailwind CSS classes and `class-variance-authority` for variants
 
 ### Port Allocation
@@ -158,13 +159,14 @@ All apps use workspace-local packages:
 - Follow React 19 patterns and conventions
 
 ### shadcn/ui Component Guidelines
-- Use `cn()` utility function for className merging in all shadcn/ui components
+- Use `cn()` utility function from `@/lib/utils` for className merging in all shadcn/ui components
 - Follow the established variant pattern with `class-variance-authority`
 - Import Radix UI primitives when needed for accessibility
-- Maintain consistent styling with Tailwind CSS classes
+- Maintain consistent styling with Tailwind CSS classes using "new-york" style
 - Export both the component and its variants (e.g., `Button` and `buttonVariants`)
 - Use React.forwardRef for proper ref forwarding
 - Include proper TypeScript interfaces extending HTML element props
+- Use path aliases for imports (e.g., `@/components`, `@/lib/utils`)
 
 ### Database Guidelines
 - Use Drizzle ORM for type-safe database operations
