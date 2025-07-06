@@ -13,6 +13,9 @@
     "db:studio": "drizzle-kit studio",
     "db:push": "drizzle-kit push",
     "lint": "eslint .",
+    "lint:biome": "biome lint .",
+    "format": "biome format --write .",
+    "format:biome": "biome format --write .",
     "check-types": "tsc --noEmit"
   },
   "dependencies": {

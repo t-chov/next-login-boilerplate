@@ -8,7 +8,10 @@
     "POSTGRES_DB",
     "POSTGRES_USER",
     "POSTGRES_PASSWORD",
-    "NODE_ENV"
+    "NODE_ENV",
+    "BETTER_AUTH_URL",
+    "BETTER_AUTH_SECRET",
+    "NEXT_PUBLIC_BETTER_AUTH_URL"
   ],
   "tasks": {
     "build": {
@@ -18,6 +21,15 @@
     },
     "lint": {
       "dependsOn": ["^lint"]
+    },
+    "lint:biome": {
+      "dependsOn": ["^lint:biome"]
+    },
+    "format": {
+      "dependsOn": ["^format"]
+    },
+    "format:biome": {
+      "dependsOn": ["^format:biome"]
     },
     "check-types": {
       "dependsOn": ["^check-types"]

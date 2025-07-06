@@ -7,5 +7,5 @@ const connectionString = process.env.DATABASE_URL || "postgresql://localhost:254
 const client = postgres(connectionString);
 export const db = drizzle(client, { schema });
 
+export type { InferInsertModel, InferSelectModel } from "drizzle-orm";
 export * from "./schema/index.js";
-export type { InferSelectModel, InferInsertModel } from "drizzle-orm";

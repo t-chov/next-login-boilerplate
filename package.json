@@ -5,7 +5,9 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "lint:biome": "turbo run lint:biome",
+    "format": "turbo run format",
+    "format:biome": "turbo run format:biome",
     "check-types": "turbo run check-types",
     "db:generate": "turbo run db:generate",
     "db:migrate": "turbo run db:migrate",
@@ -19,6 +21,7 @@
     "docker:db-reset": "./scripts/db-reset.sh"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.0.6",
     "prettier": "^3.6.0",
     "turbo": "^2.5.4",
     "typescript": "5.8.2"
