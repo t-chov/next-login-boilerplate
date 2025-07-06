@@ -10,8 +10,7 @@ This is a Turborepo monorepo called "gibbon-writer" built with Next.js apps and 
 
 ### Monorepo Structure
 - **apps/**: Contains Next.js applications
-  - `web/`: Main web application (runs on port 3000)
-  - `docs/`: Documentation site (runs on port 3001)
+  - `web/`: Main web application (runs on port 13200)
 - **packages/**: Shared packages and configurations
   - `ui/`: Shared React component library with exports pattern `"./*": "./src/*.tsx"`
   - `eslint-config/`: Centralized ESLint configurations for base, Next.js, and React
@@ -38,7 +37,6 @@ pnpm dev
 
 # Develop specific app
 turbo dev --filter=web
-turbo dev --filter=docs
 ```
 
 ### Building
@@ -95,7 +93,6 @@ cd packages/ui && pnpm generate:component
 
 ### Port Allocation
 - Web app: 3000
-- Docs app: 3001
 
 ### Workspace Dependencies
 All apps use workspace-local packages:

@@ -7,12 +7,10 @@ services:
       dockerfile: Dockerfile.dev
     ports:
       - "13200:13200"
-      - "13201:13201"
     volumes:
       - .:/app
       - /app/node_modules
       - /app/apps/web/node_modules
-      - /app/apps/docs/node_modules
     environment:
       - NODE_ENV=development
       - DATABASE_URL=postgresql://postgres:password@postgres:25432/gibbon_writer
