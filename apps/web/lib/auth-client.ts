@@ -8,4 +8,6 @@ const getAuthClient = () => {
 
 const authClient = getAuthClient();
 
+export const { signOut, useSession, signIn, signUp } = authClient;
+
 export default authClient;

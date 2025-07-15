@@ -1,15 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-// Mock better-auth/react
-const mockSignIn = {
-  email: vi.fn(),
-};
-const mockSignUp = {
-  email: vi.fn(),
-};
-const mockSignOut = vi.fn();
-const mockUseSession = vi.fn();
-
 const mockCreateAuthClient = vi.fn(() => ({
   signIn: {
     email: vi.fn(),
@@ -45,7 +35,7 @@ describe("Auth Client", () => {
   });
 
   it("should create auth client with correct base URL", async () => {
-    const authClientModule = await import("../auth-client");
+    const authClientModule = await import("../auth-client"); // eslint-disable-line @typescript-eslint/no-unused-vars
 
     expect(mockCreateAuthClient).toHaveBeenCalledWith();
   });

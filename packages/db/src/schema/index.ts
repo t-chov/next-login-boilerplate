@@ -17,4 +17,4 @@ export const posts = pgTable("posts", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
-export * from "./auth.js";
+export * from "./auth";
