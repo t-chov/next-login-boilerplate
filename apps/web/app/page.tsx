@@ -17,10 +17,12 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b">
-        <div className="container flex items-center justify-between py-4">
-          <h1 className="font-bold text-2xl">Gibbon-Writer</h1>
-          <div className="flex items-center space-x-4">
+      <main className="container py-8">
+        <div className="flex flex-col items-center justify-center space-y-6 text-center">
+          <h1 className="font-bold text-4xl text-foreground">Welcome to Gibbon-Writer</h1>
+          <p className="max-w-2xl text-lg text-muted-foreground">
+            A modern writing platform built with Next.js and Turborepo.
+          </p>
             {session ? (
               <>
                 <span className="text-muted-foreground text-sm">
@@ -40,15 +42,6 @@ export default function Home() {
                 </Button>
               </div>
             )}
-          </div>
-        </div>
-      </header>
-      <main className="container py-8">
-        <div className="flex flex-col items-center justify-center space-y-6 text-center">
-          <h1 className="font-bold text-4xl text-foreground">Welcome to Gibbon-Writer</h1>
-          <p className="max-w-2xl text-lg text-muted-foreground">
-            A modern writing platform built with Next.js and Turborepo.
-          </p>
           {session && (
             <div className="rounded-lg border border-green-200 bg-green-50 p-4">
               <p className="text-green-800">認証に成功しました！ユーザーID: {session.user.id}</p>
