@@ -26,7 +26,7 @@ A modern authentication boilerplate built with Next.js, Turborepo, and Better Au
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/t-chov/next-login-boilerplate.git
 cd next-login-boilerplate
 ```
 
