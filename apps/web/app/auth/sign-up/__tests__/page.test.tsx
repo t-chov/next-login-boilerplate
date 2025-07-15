@@ -1,8 +1,8 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { beforeEach, describe, expect, it, type Mock, vi } from "vitest";
-import SignUpPage from "../page";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { beforeEach, describe, expect, it, type Mock, vi } from "vitest";
+import SignUpPage from "../page";
 
 vi.mock("@/lib/auth-client", () => ({
   signUp: {
