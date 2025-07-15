@@ -1,25 +1,21 @@
 #!/bin/bash
 
-# Database Reset Script for Gibbon Writer
+# Database Reset Script for Next Login Boilerplate
 
 set -e
 
 echo "🗄️  Resetting database..."
 
-# Stop the application to prevent connection issues
-echo "⏹️  Stopping application..."
-docker-compose stop app
-
 # Drop and recreate the database
 echo "🗑️  Dropping database..."
-docker-compose exec postgres psql -U postgres -c "DROP DATABASE IF EXISTS gibbon_writer;"
+docker-compose exec postgres psql -U postgres -c "DROP DATABASE IF EXISTS next_login_boilerplate;"
 
 echo "🔄 Recreating database..."
-docker-compose exec postgres psql -U postgres -c "CREATE DATABASE gibbon_writer;"
+docker-compose exec postgres psql -U postgres -c "CREATE DATABASE next_login_boilerplate;"
 
 # Run initialization script
 echo "🔧 Running initialization script..."
-docker-compose exec postgres psql -U postgres -d gibbon_writer -f /docker-entrypoint-initdb.d/init.sql
+docker-compose exec postgres psql -U postgres -d next_login_boilerplate -f /docker-entrypoint-initdb.d/init.sql
 
 # Generate and push migrations
 echo "📝 Generating migrations..."
