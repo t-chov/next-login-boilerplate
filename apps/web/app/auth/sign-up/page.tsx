@@ -29,8 +29,16 @@ export default function SignUpPage() {
         password,
       });
       router.push("/");
-    } catch {
-      setError("サインアップに失敗しました。入力内容を確認してください。");
+    } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
+      let errorMessage = "サインアップに失敗しました。入力内容を確認してください。";
+      
+      if (error?.message?.includes("USER_ALREADY_EXISTS")) {
+        errorMessage = "このメールアドレスは既に使用されています。";
+      } else if (error?.message?.includes("password too short")) {
+        errorMessage = "パスワードは8文字以上で設定してください。";
+      }
+      
+      setError(errorMessage);
     } finally {
       setIsLoading(false);
     }
@@ -72,10 +80,11 @@ export default function SignUpPage() {
               <Input
                 id="password"
                 type="password"
-                placeholder="パスワードを入力"
+                placeholder="8文字以上のパスワードを入力"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                minLength={8}
               />
             </div>
             {error && <div className="rounded bg-red-50 p-2 text-red-600 text-sm">{error}</div>}

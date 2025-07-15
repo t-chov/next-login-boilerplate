@@ -27,8 +27,14 @@ export default function SignInPage() {
         password,
       });
       router.push("/");
-    } catch {
-      setError("サインインに失敗しました。メールアドレスとパスワードを確認してください。");
+    } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
+      let errorMessage = "サインインに失敗しました。メールアドレスとパスワードを確認してください。";
+      
+      if (error?.message?.includes("INVALID_EMAIL") || error?.message?.includes("INVALID_PASSWORD")) {
+        errorMessage = "メールアドレスまたはパスワードが正しくありません。";
+      }
+      
+      setError(errorMessage);
     } finally {
       setIsLoading(false);
     }
