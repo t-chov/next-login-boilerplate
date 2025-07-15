@@ -67,7 +67,6 @@ This Turborepo monorepo includes:
 - ✅ Session management
 - ✅ Protected routes
 - ✅ User profile management
-- ✅ Secure password handling
 
 ## Development
 
