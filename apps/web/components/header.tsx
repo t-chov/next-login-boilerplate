@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { APP_NAME } from "@/lib/config";
 
 export function Header() {
   return (
@@ -10,7 +11,7 @@ export function Header() {
           href="/"
           className="pl-4 font-bold text-foreground text-xl transition-colors hover:text-primary"
         >
-          Gibbon-Writer
+          {APP_NAME}
         </Link>
       </div>
     </header>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { signOut, useSession } from "@/lib/auth-client";
+import { APP_NAME } from "@/lib/config";
 
 export default function Home() {
   const { data: session, isPending } = useSession();
@@ -19,9 +20,9 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <main className="container py-8">
         <div className="flex flex-col items-center justify-center space-y-6 text-center">
-          <h1 className="font-bold text-4xl text-foreground">Welcome to Gibbon-Writer</h1>
+          <h1 className="font-bold text-4xl text-foreground">Welcome to {APP_NAME}</h1>
           <p className="max-w-2xl text-lg text-muted-foreground">
-            A modern writing platform built with Next.js and Turborepo.
+            A modern authentication boilerplate built with Next.js, Turborepo, and Better Auth.
           </p>
           {session ? (
             <>

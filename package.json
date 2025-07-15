@@ -1,5 +1,5 @@
 {
-  "name": "gibbon-writer",
+  "name": "next-login-boilerplate",
   "private": true,
   "scripts": {
     "build": "turbo run build",

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Turborepo monorepo called "gibbon-writer" built with Next.js apps and shared packages using pnpm as the package manager.
+This is a Turborepo monorepo called "next-login-boilerplate" built with Next.js apps and shared packages using pnpm as the package manager.
 
 ## Architecture
 

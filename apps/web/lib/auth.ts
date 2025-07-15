@@ -5,7 +5,8 @@ import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 
 const connectionString =
-  process.env.DATABASE_URL || "postgresql://postgres:password@localhost:25432/gibbon_writer";
+  process.env.DATABASE_URL ||
+  "postgresql://postgres:password@localhost:25432/next_login_boilerplate";
 const client = postgres(connectionString);
 const db = drizzle(client, { schema });
 

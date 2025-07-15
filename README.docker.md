@@ -7,7 +7,7 @@ This document explains how to set up the development environment using Docker co
 1. **Clone and setup:**
    ```bash
    git clone <repository-url>
-   cd gibbon-writer
+   cd next-login-boilerplate
    pnpm run docker:setup
    ```
 
@@ -71,7 +71,7 @@ pnpm run db:studio
 ### PostgreSQL Database
 - **Image:** PostgreSQL 15 Alpine
 - **Port:** 25432
-- **Database:** gibbon_writer
+- **Database:** next_login_boilerplate
 - **User:** postgres
 - **Password:** password
 - **Persistent storage:** Docker volume
@@ -80,7 +80,7 @@ pnpm run db:studio
 - **Image:** Adminer latest
 - **Port:** 8080
 - **Access:** http://localhost:8080
-- **Login:** postgres/password/gibbon_writer
+- **Login:** postgres/password/next_login_boilerplate
 
 ## Development Container (VS Code)
 
@@ -106,10 +106,10 @@ Copy `.env.example` to `.env` and customize:
 
 ```env
 # Database
-DATABASE_URL=postgresql://postgres:password@postgres:25432/gibbon_writer
+DATABASE_URL=postgresql://postgres:password@postgres:25432/next_login_boilerplate
 POSTGRES_HOST=postgres
 POSTGRES_PORT=25432
-POSTGRES_DB=gibbon_writer
+POSTGRES_DB=next_login_boilerplate
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=password
 
@@ -156,7 +156,7 @@ docker-compose ps postgres
 docker-compose logs postgres
 
 # Connect to database
-docker-compose exec postgres psql -U postgres -d gibbon_writer
+docker-compose exec postgres psql -U postgres -d next_login_boilerplate
 ```
 
 ### Container Rebuild

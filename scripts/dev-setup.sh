@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Development Environment Setup Script for Gibbon Writer
+# Development Environment Setup Script for Next Login Boilerplate
 
 set -e
 
-echo "🚀 Setting up Gibbon Writer development environment..."
+echo "🚀 Setting up Next Login Boilerplate development environment..."
 
 # Check if .env file exists, if not copy from example
 if [ ! -f .env ]; then
@@ -36,13 +36,6 @@ until docker-compose exec postgres pg_isready -U postgres; do
     sleep 2
 done
 
-echo "📦 Installing dependencies..."
-docker-compose exec app pnpm install
-
-echo "🗄️  Running database migrations..."
-docker-compose exec app pnpm --filter=@repo/db db:generate
-docker-compose exec app pnpm --filter=@repo/db db:push
-
 echo "🎉 Development environment is ready!"
 echo ""
 echo "📋 Available services:"
@@ -55,5 +48,5 @@ echo "🛠️  Useful commands:"
 echo "   - View logs: docker-compose logs -f"
 echo "   - Stop services: docker-compose down"
 echo "   - Rebuild: docker-compose up --build"
-echo "   - Database shell: docker-compose exec postgres psql -U postgres -d gibbon_writer"
+echo "   - Database shell: docker-compose exec postgres psql -U postgres -d next_login_boilerplate"
 echo ""
