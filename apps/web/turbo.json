@@ -1,0 +1,20 @@
+{
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "env": ["BETTER_AUTH_URL", "BETTER_AUTH_SECRET", "NEXT_PUBLIC_BETTER_AUTH_URL"]
+    },
+    "lint": {
+      "env": ["BETTER_AUTH_URL", "BETTER_AUTH_SECRET", "NEXT_PUBLIC_BETTER_AUTH_URL"]
+    },
+    "dev": {
+      "env": ["BETTER_AUTH_URL", "BETTER_AUTH_SECRET", "NEXT_PUBLIC_BETTER_AUTH_URL"]
+    },
+    "test": {
+      "env": ["BETTER_AUTH_URL", "BETTER_AUTH_SECRET", "NEXT_PUBLIC_BETTER_AUTH_URL"]
+    },
+    "test:run": {
+      "env": ["BETTER_AUTH_URL", "BETTER_AUTH_SECRET", "NEXT_PUBLIC_BETTER_AUTH_URL"]
+    }
+  }
+}

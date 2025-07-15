@@ -4,9 +4,12 @@ import Link from "next/link";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b backdrop-blur bg-slate-100">
+    <header className="sticky top-0 z-50 w-full border-b bg-slate-100 backdrop-blur">
       <div className="container flex h-16 items-center">
-        <Link href="/" className="text-xl font-bold text-foreground hover:text-primary transition-colors pl-4">
+        <Link
+          href="/"
+          className="pl-4 font-bold text-foreground text-xl transition-colors hover:text-primary"
+        >
           Gibbon-Writer
         </Link>
       </div>

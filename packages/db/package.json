@@ -8,11 +8,15 @@
     "./schema": "./src/schema/index.ts"
   },
   "scripts": {
+    "build": "tsup",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
     "db:push": "drizzle-kit push",
     "lint": "eslint .",
+    "lint:biome": "biome lint .",
+    "format": "biome format --write .",
+    "format:biome": "biome format --write .",
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
@@ -25,6 +29,7 @@
     "@types/node": "^22.7.9",
     "drizzle-kit": "^0.28.1",
     "eslint": "^9.15.0",
+    "tsup": "^8.5.0",
     "typescript": "^5.8.2"
   }
 }
