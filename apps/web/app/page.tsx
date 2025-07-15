@@ -23,25 +23,25 @@ export default function Home() {
           <p className="max-w-2xl text-lg text-muted-foreground">
             A modern writing platform built with Next.js and Turborepo.
           </p>
-            {session ? (
-              <>
-                <span className="text-muted-foreground text-sm">
-                  こんにちは、{session.user.name}さん
-                </span>
-                <Button variant="outline" onClick={() => signOut()}>
-                  サインアウト
-                </Button>
-              </>
-            ) : (
-              <div className="space-x-2">
-                <Button asChild variant="outline">
-                  <Link href="/auth/sign-in">サインイン</Link>
-                </Button>
-                <Button asChild>
-                  <Link href="/auth/sign-up">サインアップ</Link>
-                </Button>
-              </div>
-            )}
+          {session ? (
+            <>
+              <span className="text-muted-foreground text-sm">
+                こんにちは、{session.user.name}さん
+              </span>
+              <Button variant="outline" onClick={() => signOut()}>
+                サインアウト
+              </Button>
+            </>
+          ) : (
+            <div className="space-x-2">
+              <Button asChild variant="outline">
+                <Link href="/auth/sign-in">サインイン</Link>
+              </Button>
+              <Button asChild>
+                <Link href="/auth/sign-up">サインアップ</Link>
+              </Button>
+            </div>
+          )}
           {session && (
             <div className="rounded-lg border border-green-200 bg-green-50 p-4">
               <p className="text-green-800">認証に成功しました！ユーザーID: {session.user.id}</p>

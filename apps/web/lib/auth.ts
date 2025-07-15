@@ -4,7 +4,8 @@ import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 
-const connectionString = process.env.DATABASE_URL || "postgresql://postgres:password@localhost:25432/gibbon_writer";
+const connectionString =
+  process.env.DATABASE_URL || "postgresql://postgres:password@localhost:25432/gibbon_writer";
 const client = postgres(connectionString);
 const db = drizzle(client, { schema });
 

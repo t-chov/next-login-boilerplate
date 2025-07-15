@@ -29,15 +29,15 @@ export default function SignUpPage() {
         password,
       });
       router.push("/");
-    } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
+    } catch (error) {
       let errorMessage = "サインアップに失敗しました。入力内容を確認してください。";
-      
-      if (error?.message?.includes("USER_ALREADY_EXISTS")) {
+
+      if ((error as Error)?.message?.includes("USER_ALREADY_EXISTS")) {
         errorMessage = "このメールアドレスは既に使用されています。";
-      } else if (error?.message?.includes("password too short")) {
+      } else if ((error as Error)?.message?.includes("password too short")) {
         errorMessage = "パスワードは8文字以上で設定してください。";
       }
-      
+
       setError(errorMessage);
     } finally {
       setIsLoading(false);

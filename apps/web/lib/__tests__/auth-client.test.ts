@@ -35,7 +35,7 @@ describe("Auth Client", () => {
   });
 
   it("should create auth client with correct base URL", async () => {
-    const authClientModule = await import("../auth-client"); // eslint-disable-line @typescript-eslint/no-unused-vars
+    await import("../auth-client");
 
     expect(mockCreateAuthClient).toHaveBeenCalledWith();
   });

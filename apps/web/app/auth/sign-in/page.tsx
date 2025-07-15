@@ -27,13 +27,16 @@ export default function SignInPage() {
         password,
       });
       router.push("/");
-    } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
+    } catch (error) {
       let errorMessage = "サインインに失敗しました。メールアドレスとパスワードを確認してください。";
-      
-      if (error?.message?.includes("INVALID_EMAIL") || error?.message?.includes("INVALID_PASSWORD")) {
+
+      if (
+        (error as Error)?.message?.includes("INVALID_EMAIL") ||
+        (error as Error)?.message?.includes("INVALID_PASSWORD")
+      ) {
         errorMessage = "メールアドレスまたはパスワードが正しくありません。";
       }
-      
+
       setError(errorMessage);
     } finally {
       setIsLoading(false);
